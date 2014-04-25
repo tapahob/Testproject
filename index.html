@@ -1,93 +1,24 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<title>XCOMBAT: 3D шутер на летающих тарелках!</title>
-		<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
-		<script type="text/javascript" src="http://vk.com/js/api/xd_connection.js?2"></script>
-		<!-- Google Analytics -->
+		<title>Unity Web Player | TestProject</title>
+		<script type='text/javascript' src='https://ssl-webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/jquery.min.js'></script>
 		<script type="text/javascript">
 		<!--
-			var _gaq = _gaq || [];
-			_gaq.push(['_setAccount', 'UA-38710768-2']);
-			_gaq.push(['_setDomainName', 'vk.com']);
-			_gaq.push(['_trackPageview']);
-
-			(function() {
-				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-			})();
-
-			var ecommerceLoaded = false;
-			var currentTransactionId = 0;
-
-			function gaCreateTracker(trackerId)
-			{}
-
-			function gaTrack(event)
-			{
-				_gaq.push(['_trackPageview', '/' + event]);
-			}
-
-			function gaCreateTransaction(userId, revenue)
-			{
-				currentTransactionId = Math.random().toString().substring(2);
-
-				_gaq.push(['_addTrans',
-				      currentTransactionId,
-				      'Squrrels Store',
-				      revenue.toString(),
-				      '0',
-				      '0'
-				]);
-			}
-
-			function gaTransactionAddItem(code,  name,  category,  price,  quantity)
-			{
- 				  _gaq.push(['_addItem',
-				      currentTransactionId,
-				      code,
-				      name,
-				      category,
-				      price,
-				      quantity
- 				  ]);
-			}
-
-			function gaTrackTransaction()
-			{
-				if (currentTransactionId != 0)
-					_gaq.push(['_trackTrans']);
-
-				currentTransactionId = 0;
-			}
-
-			function gaTrackSimpleTransaction(userId,  code,  name,  category,  price,  quantity)
-			{
-				gaCreateTransaction(userId, price);
-				gaTransactionAddItem(code, name, category, price, quantity);
-				gaTrackTransaction();
-			}
-		//-->
-		</script>
-		<!-- End Google Analytics -->
-		<script type="text/javascript">
-		<!--
-			var unityObjectUrl = "http://webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/UnityObject2.js";
-			if (document.location.protocol == 'https:')
-				unityObjectUrl = unityObjectUrl.replace("http://", "https://ssl-");
-			document.write('<script type="text\/javascript" src="' + unityObjectUrl + '"><\/script>');
-		//-->
+		var unityObjectUrl = "http://webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/UnityObject2.js";
+		if (document.location.protocol == 'https:')
+			unityObjectUrl = unityObjectUrl.replace("http://", "https://ssl-");
+		document.write('<script type="text\/javascript" src="' + unityObjectUrl + '"><\/script>');
+		-->
 		</script>
 		<script type="text/javascript">
 		<!--
-			var vars = location.href.substr(location.href.indexOf("?") + 1);
-
 			var config = {
-				width: 1000,
-				height: 750,
+				width: 960, 
+				height: 600,
 				params: { enableDebugging:"0" }
+				
 			};
 			var u = new UnityObject2(config);
 
@@ -97,7 +28,7 @@
 				var $brokenScreen = jQuery("#unityPlayer").find(".broken");
 				$missingScreen.hide();
 				$brokenScreen.hide();
-
+				
 				u.observeProgress(function (progress) {
 					switch(progress.pluginStatus) {
 						case "broken":
@@ -125,80 +56,67 @@
 						break;
 					}
 				});
-
-				VK.init(function() {
-					VK.addCallback("onWindowBlur", function() {
-						$("#unityPlayer").css({visibility:'hidden'});
-					});
-					VK.addCallback("onWindowFocus", function() {
-						$("#unityPlayer").css({visibility:'visible'});
-					});
-				});
-
-				u.initPlugin(jQuery("#unityPlayer")[0], "debugWebTest.unity3d?social=vk");
+				u.initPlugin(jQuery("#unityPlayer")[0], "Build.unity3d");
 			});
-
-			function GetUnity()
-			{
-				return u.getUnity();
-			}
-		//-->
+		-->
 		</script>
 		<style type="text/css">
-			body {
-				font-family: Helvetica, Verdana, Arial, sans-serif;
-				background-color: white;
-				color: black;
-				text-align: center;
-				margin: 0px;
-			}
-			a:link, a:visited {
-				color: #000;
-			}
-			a:active, a:hover {
-				color: #666;
-			}
-			p.header {
-				font-size: small;
-			}
-			p.header span {
-				font-weight: bold;
-			}
-			p.footer {
-				font-size: x-small;
-			}
-			div.content {
-				margin: auto;
-				width: 1000px;
-			}
-			div.broken,
-			div.missing {
-				margin: auto;
-				position: relative;
-				top: 50%;
-				width: 193px;
-			}
-			div.broken a,
-			div.missing a {
-				height: 63px;
-				position: relative;
-				top: -31px;
-			}
-			div.broken img,
-			div.missing img {
-				border-width: 0px;
-			}
-			div.broken {
-				display: none;
-			}
-			div#unityPlayer {
-				cursor: default;
-				height: 750px;
-				width: 1000px;
-			}
+		<!--
+		body {
+			font-family: Helvetica, Verdana, Arial, sans-serif;
+			background-color: white;
+			color: black;
+			text-align: center;
+		}
+		a:link, a:visited {
+			color: #000;
+		}
+		a:active, a:hover {
+			color: #666;
+		}
+		p.header {
+			font-size: small;
+		}
+		p.header span {
+			font-weight: bold;
+		}
+		p.footer {
+			font-size: x-small;
+		}
+		div.content {
+			margin: auto;
+			width: 960px;
+		}
+		div.broken,
+		div.missing {
+			margin: auto;
+			position: relative;
+			top: 50%;
+			width: 193px;
+		}
+		div.broken a,
+		div.missing a {
+			height: 63px;
+			position: relative;
+			top: -31px;
+		}
+		div.broken img,
+		div.missing img {
+			border-width: 0px;
+		}
+		div.broken {
+			display: none;
+		}
+		div#unityPlayer {
+			cursor: default;
+			height: 600px;
+			width: 960px;
+		}
+		-->
 		</style>
 	</head>
 	<body>
+		<p class="header"><span>Unity Web Player | </span>TestProject</p>
 		<div class="content">
 			<div id="unityPlayer">
 				<div class="missing">
@@ -213,5 +131,6 @@
 				</div>
 			</div>
 		</div>
+		<p class="footer">&laquo; created with <a href="http://unity3d.com/unity/" title="Go to unity3d.com">Unity</a> &raquo;</p>
 	</body>
 </html>
